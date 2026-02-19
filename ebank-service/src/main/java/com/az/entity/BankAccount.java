@@ -1,13 +1,11 @@
 package com.az.entity;
 
 import com.az.model.Customer;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -19,11 +17,12 @@ import java.util.Date;
 @AllArgsConstructor
 public class BankAccount {
     @Id
-    @GeneratedValue
     private String id;
-    private Date createdAt;
     private Double balance;
-    private String Type;
+    private LocalDate createdAt;
+    @Enumerated(EnumType.STRING)
+    private AccountType type;
+    private String currency;
     private Long customerId;
     @Transient
     private Customer customer;
