@@ -26,6 +26,7 @@
     <modules>
         <module>customer-service</module>
         <module>ebank-service</module>
+        <module>gateway-service</module>
     </modules>
 
     <dependencyManagement>
