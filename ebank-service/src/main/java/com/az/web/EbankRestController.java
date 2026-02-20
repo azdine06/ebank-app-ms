@@ -28,4 +28,8 @@ public class EbankRestController {
         return service.getBankaccountById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteBankAccount(@PathVariable String id) {
+        service.deleteBankAccount(id);
+    }
 }

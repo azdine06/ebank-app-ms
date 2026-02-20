@@ -33,5 +33,8 @@ public class EbankService {
         bankAccount.setCreatedAt(LocalDate.now());
         return repository.save(bankAccount);
     }
-}
 
+    public void deleteBankAccount(String id) {
+        repository.deleteById(id);
+    }
+}
