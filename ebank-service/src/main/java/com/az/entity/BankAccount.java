@@ -2,11 +2,9 @@ package com.az.entity;
 
 import com.az.model.Customer;
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 
 @Getter
@@ -18,6 +16,7 @@ import java.util.Date;
 public class BankAccount {
     @Id
     private String id;
+
     private Double balance;
     private LocalDate createdAt;
     @Enumerated(EnumType.STRING)

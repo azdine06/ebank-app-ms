@@ -4,7 +4,9 @@ import com.az.entity.BankAccount;
 import com.az.repository.BankAccountRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class EbankService {
@@ -27,6 +29,8 @@ public class EbankService {
     }
 
     public BankAccount saveBankAccount(BankAccount bankAccount) {
+        bankAccount.setId(UUID.randomUUID().toString());
+        bankAccount.setCreatedAt(LocalDate.now());
         return repository.save(bankAccount);
     }
 }
