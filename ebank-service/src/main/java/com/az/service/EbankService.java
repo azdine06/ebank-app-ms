@@ -1,6 +1,7 @@
 package com.az.service;
 
 import com.az.entity.BankAccount;
+import com.az.feign.CustomerRestClient;
 import com.az.repository.BankAccountRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
 public class EbankService {
 
     private final BankAccountRepository repository;
-
+    private CustomerRestClient customerRestClient;
 
     public EbankService(BankAccountRepository repository) {
         this.repository = repository;
@@ -24,8 +25,9 @@ public class EbankService {
     }
 
     public BankAccount getBankaccountById(String id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Bank account not found"));
-
+        BankAccount bankAccount = repository.findById(id).orElseThrow(() -> new RuntimeException("Bank account not found"));
+        bankAccount.setCustomer(customerRestClient.getCustomerById(bankAccount.getCustomerId()));
+        return bankAccount;
     }
 
     public BankAccount saveBankAccount(BankAccount bankAccount) {

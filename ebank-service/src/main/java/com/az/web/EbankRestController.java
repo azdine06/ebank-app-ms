@@ -4,10 +4,12 @@ import com.az.entity.BankAccount;
 import com.az.service.EbankService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RestController("/accounts")
+@RestController
+@RequestMapping("/accounts")
 @RequiredArgsConstructor
 public class EbankRestController {
 
