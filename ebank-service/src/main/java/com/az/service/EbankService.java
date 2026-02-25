@@ -2,9 +2,9 @@ package com.az.service;
 
 import com.az.entity.BankAccount;
 import com.az.feign.CustomerRestClient;
+import com.az.model.Customer;
 import com.az.repository.BankAccountRepository;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -31,9 +31,14 @@ public class EbankService {
     }
 
     public BankAccount saveBankAccount(BankAccount bankAccount) {
-        bankAccount.setId(UUID.randomUUID().toString());
-        bankAccount.setCreatedAt(LocalDate.now());
-        return repository.save(bankAccount);
+        try {
+            Customer customer = customerRestClient.getCustomerById(bankAccount.getCustomerId());
+            bankAccount.setId(UUID.randomUUID().toString());
+            bankAccount.setCreatedAt(LocalDate.now());
+            return repository.save(bankAccount);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public void deleteBankAccount(String id) {
