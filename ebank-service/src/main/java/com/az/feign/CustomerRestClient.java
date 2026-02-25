@@ -12,7 +12,7 @@ public interface CustomerRestClient {
     @CircuitBreaker(name = "customerService", fallbackMethod = "getDefaultCustomer")
     Customer getCustomerById(@PathVariable Long id);
 
-    default Customer getDefaultCustomer(Exception e, Long id) {
+    default Customer getDefaultCustomer(Long id, Exception e) {
         return Customer.builder()
                 .id(id)
                 .name("NOT AVAILABLE")
