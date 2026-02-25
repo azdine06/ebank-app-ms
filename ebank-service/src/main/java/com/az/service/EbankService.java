@@ -4,20 +4,19 @@ import com.az.entity.BankAccount;
 import com.az.feign.CustomerRestClient;
 import com.az.model.Customer;
 import com.az.repository.BankAccountRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class EbankService {
 
     private final BankAccountRepository repository;
-    private CustomerRestClient customerRestClient;
+    private final CustomerRestClient customerRestClient;
 
-    public EbankService(BankAccountRepository repository) {
-        this.repository = repository;
-    }
 
     public List<BankAccount> getAllBankAccounts() {
         return repository.findAll();

@@ -19,12 +19,12 @@ public class EbankServiceApplication {
     @Bean
     CommandLineRunner commandLineRunner(EbankService ebankService) {
         return args -> {
-            for (int i = 0; i < 5; i++) {
-                for (int j = 0; j < 3; j++) {
+            for (int i = 1; i <= 3; i++) {
+                for (int j = 0; j < 5; j++) {
                     ebankService.saveBankAccount(BankAccount.builder()
                             .type(Math.random() > 0.5 ? AccountType.CURRENT_ACCOUNT : AccountType.SAVING_ACCOUNT)
-                            .balance(1000+Math.random()*60000)
-                                    .customerId((long) i)
+                            .balance(1000 + Math.random() * 60000)
+                            .customerId((long) i)
                             .build());
                 }
             }
