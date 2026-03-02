@@ -17,7 +17,7 @@ public class EbankChatbotController {
     }
 
     @GetMapping
-    public String chat(@RequestParam String query) {
+    public String chat(@RequestParam(name = "query", defaultValue = "bonjour") String query) {
         return chatClient.prompt(query).call().content();
 
     }
