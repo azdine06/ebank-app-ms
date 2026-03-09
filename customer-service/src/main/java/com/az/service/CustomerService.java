@@ -2,7 +2,9 @@ package com.az.service;
 
 import com.az.entity.Customer;
 import com.az.repository.CustomerRepository;
+import org.springaicommunity.mcp.annotation.McpTool;
 import lombok.RequiredArgsConstructor;
+import org.springaicommunity.mcp.annotation.McpToolParam;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +14,11 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepository repository;
 
+    @McpTool(name = "getAllCustomers", description = "Get all customers")
     public List<Customer> getAllCustomers() {
         return repository.findAll();
     }
+
 
     public Customer createCustomer(Customer customer) {
         return repository.save(customer);
@@ -24,7 +28,8 @@ public class CustomerService {
         repository.deleteById(id);
     }
 
-    public Customer findCustomerById(Long id) {
+    @McpTool(description = "Find a customer by id")
+    public Customer findCustomerById(@McpToolParam(description = "the Custtomer id") Long id) {
         return repository.findById(id).orElseThrow(() -> new RuntimeException("Customer not found"));
     }
 }
