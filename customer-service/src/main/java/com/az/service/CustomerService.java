@@ -19,8 +19,8 @@ public class CustomerService {
         return repository.findAll();
     }
 
-
-    public Customer createCustomer(Customer customer) {
+    @McpTool(description = "save a new customer")
+    public Customer createCustomer(@McpToolParam(description = "The Customer to save (name ) ") Customer customer) {
         return repository.save(customer);
     }
 
